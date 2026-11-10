@@ -11,7 +11,28 @@ class MenuSeeder extends Seeder
 {
     public function run(): void
     {
+        $category = Category::firstOrCreate(
+            ['slug' => 'donuts-dunki'],
+            [
+                'name' => 'Donuts Dunki',
+                'description' => 'Aneka varian donat',
+                'is_active' => true,
+            ]
+        );
+
+        $category->update([
+            'name' => 'Donuts Dunki',
+            'is_active' => true,
+        ]);
+
+        $otherCategoryIds = Category::where('id', '!=', $category->id)->pluck('id');
+        if ($otherCategoryIds->isNotEmpty()) {
+            Category::whereIn('id', $otherCategoryIds)->update(['is_active' => false]);
+            Product::whereIn('category_id', $otherCategoryIds)->update(['is_available' => false]);
+        }
+
         $menu = [
+<<<<<<< HEAD
             'TEA SERIES' => [
                 ['name' => 'Original Tea',       'price' => 10000, 'stock' => 100],
                 ['name' => 'Lemon Tea',           'price' => 12000, 'stock' => 100, 'image' => 'images/products/lemon-tea.jpg'],
@@ -66,8 +87,39 @@ class MenuSeeder extends Seeder
                     'price'        => $p['price'],
                     'stock'        => $p['stock'],
                     'image'        => $p['image'] ?? null,
+=======
+            ['name' => 'Coklat Kacang', 'price' => 10000],
+            ['name' => 'Coklat Ceres Warna-warni', 'price' => 10000],
+            ['name' => 'Vanilla Keju', 'price' => 10000],
+            ['name' => 'Strawberry Keju', 'price' => 10000],
+            ['name' => 'Vanilla Sprinkle', 'price' => 9000],
+            ['name' => 'Matcha', 'price' => 10000],
+            ['name' => 'Taro Ceres', 'price' => 10000],
+            ['name' => 'Coklat Keju', 'price' => 10000],
+            ['name' => 'Vanilla Oreo', 'price' => 10000],
+            ['name' => 'Tiramisu Keju', 'price' => 12000],
+            ['name' => 'Vanilla', 'price' => 8000],
+            ['name' => 'Red Velvet', 'price' => 12000],
+        ];
+
+        foreach ($menu as $item) {
+            $product = Product::firstOrCreate(
+                [
+                    'category_id' => $category->id,
+                    'name' => $item['name'],
+                ],
+                [
+                    'slug' => Str::slug('donuts-dunki-'.$item['name']),
+                    'description' => $item['name'].' Donuts Dunki',
+                    'price' => $item['price'],
+                    'stock' => 10,
+>>>>>>> 1f499fa (Update menu Donuts Dunki dan POS)
                     'is_available' => true,
-                ]);
+                ]
+            );
+
+            if (! $product->is_available) {
+                $product->update(['is_available' => true]);
             }
         }
     }

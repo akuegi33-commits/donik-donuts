@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>Kasir - Donik Donuts</title>
+<title>Kasir - Donuts Dunki</title>
 <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 <link rel="shortcut icon" href="{{ asset('favicon.svg') }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,12 +28,17 @@
   --topbar:#0a0a0c;--cats:#0d110e;
 }
 
+<<<<<<< HEAD
 html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
 .shell{display:grid;grid-template-rows:52px 1fr;grid-template-columns:210px 1fr 330px;height:100vh}
+=======
+html,body{height:100%;overflow:hidden;font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+.shell{display:grid;grid-template-rows:52px minmax(0,1fr);grid-template-columns:210px minmax(0,1fr) 330px;height:100vh}
+>>>>>>> 1f499fa (Update menu Donuts Dunki dan POS)
 
 /* ── Mobile: stack layout ── */
 @media(max-width:900px){
-  .shell{grid-template-columns:1fr;grid-template-rows:52px 1fr}
+  .shell{grid-template-columns:minmax(0,1fr);grid-template-rows:52px minmax(0,1fr)}
   .cats{display:none}
   .cart-panel{
     position:fixed;bottom:0;left:0;right:0;
@@ -47,8 +52,8 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
   }
   .cart-panel.show{transform:translateY(0)}
   .cart-foot{padding-bottom:env(safe-area-inset-bottom,16px)}
-  .prod-panel{grid-column:1;height:calc(100vh - 52px);overflow:hidden;display:flex;flex-direction:column}
-  .prod-grid{flex:1;overflow-y:auto}
+  .prod-panel{grid-column:1;height:calc(100vh - 52px);min-height:0;overflow:hidden;display:flex;flex-direction:column}
+  .prod-grid{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .cart-fab{display:flex!important}
   .shell{grid-template-columns:1fr}
 }
@@ -208,14 +213,19 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
 .cat-btn:hover{background:#2c2c2e;color:#d1d1d6}
 .cat-btn.on{background:var(--tea);color:#fff}
 .cat-btn.on .num{background:rgba(255,255,255,.2);color:#fff}
+<<<<<<< HEAD
 .prod-panel{display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+=======
+.cat-btn.on i,.cat-btn.on .lbl{color:#fff}
+.prod-panel{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;background:var(--bg)}
+>>>>>>> 1f499fa (Update menu Donuts Dunki dan POS)
 .search-bar{padding:12px 16px;background:var(--white);border-bottom:1px solid var(--line);flex-shrink:0}
 .search-inner{position:relative}
 .search-inner i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:14px;pointer-events:none}
 .search-inner input{width:100%;height:40px;padding:0 14px 0 38px;background:var(--bg);border:1.5px solid transparent;border-radius:9px;font-size:14px;font-family:inherit;color:var(--ink);transition:all .15s}
 .search-inner input::placeholder{color:var(--dim)}
 .search-inner input:focus{outline:none;background:var(--white);border-color:var(--tea)}
-.prod-grid{flex:1;overflow-y:auto;padding:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;align-content:start}
+.prod-grid{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;align-content:start}
 .prod-grid::-webkit-scrollbar{width:5px}
 .prod-grid::-webkit-scrollbar-thumb{background:#d1d1d6;border-radius:10px}
 .pcard{background:var(--white);border-radius:13px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s,box-shadow .15s,transform .1s;user-select:none}
@@ -384,6 +394,7 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
 {{-- TOPBAR --}}
 <header class="topbar">
   <a href="{{ route('dashboard') }}" class="brand">
+<<<<<<< HEAD
     <svg width="32" height="32" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="22" cy="22" r="22" fill="#d4522a"/>
       <circle cx="22" cy="22" r="18" fill="#ffffff"/>
@@ -399,6 +410,19 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
       <text x="22" y="30.5" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="4" fill="#7c2d12">DONUTS</text>
     </svg>
     Donik Donuts
+=======
+    @if(file_exists(public_path('images/logo.png')))
+        <img src="{{ asset('images/logo.png') }}" alt="Donuts Dunki" width="32" height="32" style="border-radius:50%;object-fit:cover">
+    @else
+        <svg width="32" height="32" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="55" cy="55" r="55" fill="#1a1a1a"/>
+            <circle cx="55" cy="42" r="20" fill="#f5c518"/>
+            <ellipse cx="55" cy="39" rx="16" ry="12" fill="#f472b6"/>
+            <circle cx="55" cy="42" r="7" fill="#1a1a1a"/>
+        </svg>
+    @endif
+    Donuts Dunki
+>>>>>>> 1f499fa (Update menu Donuts Dunki dan POS)
   </a>
   <div class="topbar-sep"></div>
   <span class="topbar-clock" id="clk"></span>
@@ -425,24 +449,9 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
   <div class="cat-section">Menu</div>
   <button class="cat-btn on" data-cat="all">
     <span class="ico"><i class="bi bi-list"></i></span>
-    <span class="lbl">Semua</span>
+    <span class="lbl">All Varian</span>
     <span class="num" id="cnt-all">-</span>
   </button>
-  @foreach($categories as $cat)
-  @php
-    $icons = [
-      'TEA SERIES'    => '<i class="bi bi-cup-hot"></i>',
-      'YAKULT SERIES' => '<i class="bi bi-droplet-fill"></i>',
-      'BLEND SERIES'  => '<i class="bi bi-layers-fill"></i>',
-      'COFFEE SERIES' => '<i class="bi bi-cup-fill"></i>',
-    ];
-  @endphp
-  <button class="cat-btn" data-cat="{{ $cat->id }}">
-    <span class="ico">{!! $icons[$cat->name] ?? '<i class="bi bi-cup"></i>' !!}</span>
-    <span class="lbl">{{ $cat->name }}</span>
-    <span class="num" id="cnt-{{ $cat->id }}">{{ $cat->products->count() }}</span>
-  </button>
-  @endforeach
 </aside>
 
 {{-- PRODUCT GRID --}}
@@ -450,16 +459,13 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
   <div class="search-bar">
     <div class="search-inner">
       <i class="bi bi-search"></i>
-      <input id="srch" type="text" placeholder="Ketik nama minuman...">
+      <input id="srch" type="text" placeholder="Ketik nama donat...">
     </div>
   </div>
 
   {{-- Category tabs mobile --}}
   <div class="cat-tabs-mobile" id="catTabsMobile">
-    <button class="cat-tab-pill on" data-cat="all">Semua</button>
-    @foreach($categories as $cat)
-    <button class="cat-tab-pill" data-cat="{{ $cat->id }}">{{ $cat->name }}</button>
-    @endforeach
+    <button class="cat-tab-pill on" data-cat="all">All Varian</button>
   </div>
 
   <div class="prod-grid" id="grid">
@@ -735,38 +741,27 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
     el._t = setTimeout(() => el.classList.remove('show'), 2800);
   }
 
-  /* SVG Cup */
-  function cupSVG(name) {
+  /* SVG Donut */
+  function donutSVG(name) {
     const n = name.toLowerCase();
-    let c = '#c8832a';
-    if (n.includes('coffee') || n.includes('latte') || n.includes('cappuccino') || n.includes('americano') || n.includes('dalgona') || n.includes('vietnam') || n.includes('hazelnut') || n.includes('caramel')) c = '#6b3a2a';
-    else if (n.includes('yakult'))                                             c = '#f4a261';
-    else if (n.includes('matcha'))                                             c = '#6aaa64';
-    else if (n.includes('taro'))                                               c = '#9b72cf';
-    else if (n.includes('thai'))                                               c = '#e07b39';
-    else if (n.includes('strawberry'))                                         c = '#e05c7a';
-    else if (n.includes('lemon'))                                              c = '#c8b832';
-    else if (n.includes('peach') || n.includes('mango'))                       c = '#f4a261';
-    else if (n.includes('brown sugar') || n.includes('okinawa'))               c = '#8b5e3c';
-    else if (n.includes('cheese'))                                             c = '#f4d03f';
-    else if (n.includes('wintermelon'))                                        c = '#7ec8a0';
-    else if (n.includes('grape'))                                              c = '#8e44ad';
-    else if (n.includes('jasmine'))                                            c = '#a0c878';
-    else if (n.includes('passion'))                                            c = '#e05c7a';
+    let c = '#f5c27a';
+    if (n.includes('coklat')) c = '#7b4632';
+    else if (n.includes('strawberry')) c = '#ec83a6';
+    else if (n.includes('matcha')) c = '#78a85a';
+    else if (n.includes('taro')) c = '#a17ac2';
+    else if (n.includes('tiramisu')) c = '#9b6749';
+    else if (n.includes('red velvet')) c = '#b7434d';
+    else if (n.includes('vanilla')) c = '#f1d59a';
     return '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">'
-      + '<path class="s1" d="M30 18 Q28 13 30 8" stroke="#9cbe9c" stroke-width="1.8" stroke-linecap="round"/>'
-      + '<path class="s2" d="M40 16 Q38 10 40 5" stroke="#9cbe9c" stroke-width="1.8" stroke-linecap="round"/>'
-      + '<path class="s3" d="M50 18 Q48 13 50 8" stroke="#9cbe9c" stroke-width="1.8" stroke-linecap="round"/>'
-      + '<ellipse cx="40" cy="66" rx="22" ry="5" fill="#e0d5c8"/>'
-      + '<ellipse cx="40" cy="64" rx="18" ry="3.5" fill="#ecdfd2"/>'
-      + '<path d="M20 32 Q19 55 28 60 Q40 64 52 60 Q61 55 60 32 Z" fill="white"/>'
-      + '<path d="M22 38 Q21 55 29 59 Q40 63 51 59 Q59 55 58 38 Z" fill="' + c + '" opacity=".85"/>'
-      + '<ellipse cx="40" cy="32" rx="20" ry="5" fill="white"/>'
-      + '<ellipse cx="40" cy="32" rx="20" ry="5" fill="' + c + '" opacity=".15"/>'
-      + '<ellipse cx="40" cy="32" rx="20" ry="5" stroke="#d8cfc6" stroke-width="1"/>'
-      + '<path d="M60 38 Q72 38 72 47 Q72 56 60 56" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>'
-      + '<path d="M60 38 Q70 38 70 47 Q70 54 60 54" stroke="#d8cfc6" stroke-width="1" fill="none"/>'
-      + '<path d="M26 40 Q27 52 30 57" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>'
+      + '<ellipse cx="40" cy="63" rx="25" ry="6" fill="#d9c9b8"/>'
+      + '<circle cx="40" cy="38" r="27" fill="#d99b58"/>'
+      + '<circle cx="40" cy="36" r="22" fill="' + c + '"/>'
+      + '<circle cx="40" cy="36" r="8" fill="#f0f3fe"/>'
+      + '<circle cx="31" cy="22" r="1.5" fill="#fff" opacity=".9"/>'
+      + '<circle cx="50" cy="25" r="1.5" fill="#f7dc6f"/>'
+      + '<circle cx="57" cy="38" r="1.5" fill="#f9a8d4"/>'
+      + '<circle cx="24" cy="39" r="1.5" fill="#8bd3dd"/>'
+      + '<circle cx="48" cy="51" r="1.5" fill="#f7dc6f"/>'
       + '</svg>';
   }
 
@@ -798,7 +793,7 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
       var sold = p.stock <= 0;
       var img  = (p.image_url && p.image_url.indexOf('no-image') === -1)
         ? '<img src="' + p.image_url + '" alt="">'
-        : cupSVG(p.name);
+        : donutSVG(p.name);
       return '<div class="pcard' + (sold ? ' sold' : '') + '" data-pid="' + p.id + '">'
         + '<div class="thumb">' + img + '</div>'
         + '<div class="info">'
@@ -1119,4 +1114,3 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
 </script>
 </body>
 </html>
-

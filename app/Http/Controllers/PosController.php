@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionItem;
@@ -14,11 +13,7 @@ class PosController extends Controller
 {
     public function index()
     {
-        $categories = Category::where('is_active', true)->with(['products' => function ($q) {
-            $q->where('is_available', true)->where('stock', '>', 0);
-        }])->get();
-
-        return view('pos.index', compact('categories'));
+        return view('pos.index');
     }
 
     public function getProducts(Request $request)

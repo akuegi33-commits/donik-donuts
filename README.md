@@ -7,6 +7,29 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Setup Database
+
+Buat tabel, akun default admin dan kasir, serta data awal dengan:
+
+```bash
+php artisan migrate --seed
+```
+
+Jika database sudah dimigrasi dan hanya perlu memastikan akun default tersedia:
+
+```bash
+php artisan db:seed --class=UserSeeder
+```
+
+Akun default:
+
+- Admin: `admin@donikdonuts.com` / `admin123`
+- Kasir: `kasir@donuts.com` / `donuts123`
+
+Seeder akun aman dijalankan berulang kali dan tidak mengganti password atau status akun yang sudah ada. Ganti password default sebelum aplikasi digunakan.
+
+Menu POS memakai kategori `Donuts Dunki` dengan 12 varian donat, stok awal 10 per varian, dan harga awal Rp8.000–Rp12.000. Produk dari menu lama dinonaktifkan, bukan dihapus, agar riwayat transaksi tetap tersimpan. Harga dan stok dapat disesuaikan melalui menu Produk dan Stok.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
